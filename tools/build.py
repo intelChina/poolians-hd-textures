@@ -137,7 +137,9 @@ def main(argv: list[str] | None = None) -> int:
 
             blob, n, stats = process_pak(game, src, cue_src, game == "RealPool3D")
             rel = "%s/3d/%s" % (game, pak)
-            built[rel] = blob
+            # the drop-in package must contain the *encoded* (XOR 0x78) bytes,
+            # exactly what the game expects on disk
+            built[rel] = pakcodec.encode(blob)
             target = os.path.join(args.out, game, "3d", pak)
             os.makedirs(os.path.dirname(target), exist_ok=True)
             pakcodec.write_pak(target, blob)

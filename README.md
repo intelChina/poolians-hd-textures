@@ -3,9 +3,30 @@
 把 **Poolians《真实台球3D》(Real Pool 3D, Steam AppID 670290)** 的贴图分辨率拉高一个时代：
 球贴图从 128×128 重绘到 512×512，台布/球房贴图 2–8 倍超分，球体材质补上原版没有的高光。
 
-> **本仓库不包含任何游戏原始素材。**
-> 工具在你自己的电脑上读取你已安装的游戏文件，重新生成贴图并重建 `.pak`。
-> 游戏本体、贴图、模型版权归 Poolians 所有。这是一个非官方、面向个人使用的 mod 工具。
+> **非官方 mod**，与 Poolians 无关。游戏本体与原始美术版权归 Poolians 所有。
+>
+> - **只想玩**：用下面 `release/` 里的成品包（内含重打包的游戏资源，仅供个人使用）
+> - **想合规 / 想自己构建**：用 `tools/` 在你自己的游戏文件上重新生成，仓库里没有素材也能跑
+
+## 直接下载
+
+成品包放在 [**Releases**](https://github.com/intelChina/poolians-hd-textures/releases/latest) 页面：
+
+| 文件 | 用途 |
+|---|---|
+| `Poolians_HD_Mod.zip` | 主包。解压后把 `RealPool3D`、`RealSnooker3D` 两个文件夹拖进游戏根目录覆盖 |
+| `Poolians_HD_Mod_ReShade.zip` | 可选。ReShade 后处理 + 预设 |
+
+成品包体积较大（46 MB），所以没有放进 git 历史，而是作为 Release 附件。
+
+只替换 4 个文件，不需要改配置：
+
+```
+RealPool3D/3d/common.pak      RealPool3D/3d/room1.pak
+RealSnooker3D/3d/common.pak   RealSnooker3D/3d/room1.pak
+```
+
+覆盖前请自行备份原版 pak（用 `tools/build.py --install` 装会自动备份成 `*.backup`）。
 
 ![游戏内效果](docs/images/ingame.jpg)
 
@@ -131,8 +152,9 @@ The game's `.pak` archives are ZIP files XOR-ed with `0x78`; this tool decodes t
 textures (procedural ball maps at 4×, Lanczos upscaling for scene textures, patched Ogre material
 scripts for specular highlights) and repacks them.
 
-**No game assets are distributed here** — the tool builds everything from your own installation.
-MIT licensed tooling; the game and its artwork remain © Poolians.
+The `tools/` directory builds everything from your own installation. The `release/` packages are
+repacked game resources and are shared for personal use only — the game and its artwork remain
+© Poolians. MIT licensed tooling.
 
 ---
 

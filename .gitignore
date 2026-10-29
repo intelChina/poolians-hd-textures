@@ -3,6 +3,9 @@ build/
 dist/
 out/
 
+# release binaries are attached to GitHub Releases instead of being committed
+release/*.zip
+
 # game assets must never be committed
 *.pak
 *.pak.backup
